@@ -4,7 +4,9 @@
   "description": "Generic event logger",
   "main": "index.js",
   "scripts": {
-    "test": "xo && ava"
+    "build": "babel src -d lib",
+    "test": "xo && ava",
+    "lint": "xo"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,17 @@
   },
   "homepage": "https://github.com/kolyaventuri/logger#readme",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "ava": "^1.1.0",
     "xo": "^0.24.0"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "xo": {
-    "space": true
+    "space": true,
+    "ignore": ["lib/**/*"]
   }
 }
