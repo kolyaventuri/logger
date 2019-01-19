@@ -1,0 +1,26 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "Generic event logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolyaventuri/logger.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kolyaventuri/logger/issues"
+  },
+  "homepage": "https://github.com/kolyaventuri/logger#readme",
+  "devDependencies": {
+    "ava": "^1.1.0",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "space": true
+  }
+}
