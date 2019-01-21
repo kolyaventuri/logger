@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "xo && ava",
-    "lint": "xo"
+    "test": "flow && xo && ava",
+    "lint": "flow && xo"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,11 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
     "ava": "^1.1.0",
+    "babel-eslint": "^10.0.1",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "flow-bin": "^0.91.0",
     "sinon": "^7.2.3",
     "xo": "^0.24.0"
   },
@@ -35,9 +39,19 @@
     ]
   },
   "xo": {
+    "parser": "babel-eslint",
+    "extends": [
+      "plugin:flowtype/recommended"
+    ],
+    "plugins": [
+      "flowtype"
+    ],
     "space": true,
     "ignore": [
       "lib/**/*"
     ]
+  },
+  "dependencies": {
+    "@babel/preset-flow": "^7.0.0"
   }
 }

@@ -1,6 +1,10 @@
+// @flow
+
 import {allowedTypes} from './constants';
 
-export const log = (data, args = {}) => {
+type ArgType = {[string]: any};
+
+export const log = (data: any, args: ArgType = {}) => {
   const {type} = args;
   let method = console.log;
   if (allowedTypes.includes(type)) {
@@ -10,10 +14,10 @@ export const log = (data, args = {}) => {
   method(data);
 };
 
-export const logInfo = info => {
+export const logInfo = (info: string) => {
   log(info);
 };
 
-export const logError = error => {
+export const logError = (error: string | Error) => {
   log(error, {type: 'error'});
 };
