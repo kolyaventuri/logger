@@ -5,7 +5,7 @@ import {
   log,
   logInfo,
   logError
-} from '../src/logger';
+} from '../../src/logger';
 
 let logStub;
 let errorStub;
