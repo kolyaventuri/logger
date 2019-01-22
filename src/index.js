@@ -1,27 +1,28 @@
 // @flow
 
 import {log} from './logger';
+import * as types from './types';
 
 export default class Logger {
   scope: string | null;
-  scopeTag: string;
 
   constructor(scope?: string) {
     this.scope = scope || null;
-    this.scopeTag = scope ? `[${scope}] ` : '';
   }
 
-  log = (data: any, type: ?string) => {
-    log(data, {type});
+  log = (data: any, args: {[string]: any} = {}) => {
+    const {scope} = this;
+    let {type} = args;
+    type = type || types.INFO;
+
+    log(data, {type, scope});
   }
 
-  logInfo(info) {
-    const {scopeTag} = this;
-    log(`${scopeTag}${info}`);
+  logInfo(info: any) {
+    this.log(info);
   }
 
-  logError(error) {
-    const {scopeTag} = this;
-    this.log(`${scopeTag}${error}`, 'error');
+  logError(error: any) {
+    this.log(error, {type: types.ERROR});
   }
 }

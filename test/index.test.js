@@ -1,17 +1,18 @@
 import test from 'ava';
 import {spy} from 'sinon';
 import Logger from '../src';
+import * as methods from '../src/logger';
+import * as types from '../src/types';
 
-let logStub;
-let errorStub;
+let logSpy;
 test.before(() => {
-  logStub = spy(console, 'log');
-  errorStub = spy(console, 'error');
+  logSpy = spy(methods, 'log');
 });
 
 test.after.always(() => {
-  logStub.restore();
-  errorStub.restore();
+  if (logSpy) {
+    logSpy.restore();
+  }
 });
 
 test('Can create a logger with generic scope', t => {
@@ -33,7 +34,7 @@ test('Logs without scope', t => {
 
   logger.logInfo(msg);
 
-  t.true(logStub.calledWith(msg));
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope: null}));
 });
 
 test('Logs with scope', t => {
@@ -43,8 +44,7 @@ test('Logs with scope', t => {
 
   logger.logInfo(msg);
 
-  const expected= `[${scope}] ${msg}`;
-  t.true(logStub.calledWith(expected));
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
 });
 
 test('Errors without scope', t => {
@@ -53,7 +53,7 @@ test('Errors without scope', t => {
 
   logger.logError(msg);
 
-  t.true(errorStub.calledWith(msg));
+  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope: null}));
 });
 
 test('Errors with scope', t => {
@@ -63,6 +63,5 @@ test('Errors with scope', t => {
 
   logger.logError(msg);
 
-  const expected= `[${scope}] ${msg}`;
-  t.true(errorStub.calledWith(expected));
+  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope}));
 });

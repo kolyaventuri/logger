@@ -2,10 +2,9 @@ import test from 'ava';
 import {spy} from 'sinon';
 
 import {
-  log,
-  logInfo,
-  logError
+  log
 } from '../../src/logger';
+import * as types from '../../src/types';
 
 let logStub;
 let errorStub;
@@ -26,23 +25,18 @@ test('`log` logs to console by default', t => {
   t.true(logStub.calledWith(msg));
 });
 
-test('`logInfo` only logs to console', t => {
-  const msg = 'some info logInfo test';
-  logInfo(msg);
-
-  t.true(logStub.calledWith(msg));
-});
-
 test('`log` can be told to log error', t => {
   const msg = 'some info error log test';
-  log(msg, {type: 'error'});
+  log(msg, {type: types.ERROR});
 
   t.true(errorStub.calledWith(msg));
 });
 
-test('`logError` logs to error', t => {
-  const msg = 'some info error test';
-  logError(msg);
+test('`log` can be provided a scope', t => {
+  const msg = 'some info';
+  const scope = 'scope';
 
-  t.true(errorStub.calledWith(msg));
+  log(msg, {scope});
+
+  t.true(logStub.calledWith(`[${scope}]`, msg));
 });
