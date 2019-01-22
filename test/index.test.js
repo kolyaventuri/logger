@@ -65,3 +65,13 @@ test('Errors with scope', t => {
 
   t.true(logSpy.calledWith(msg, {type: types.ERROR, scope}));
 });
+
+test('can log object with scope', t => {
+  const scope = 'scope';
+  const logger = new Logger(scope);
+  const msg = {a: 1, b: 2};
+
+  logger.logInfo(msg);
+
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
+});
