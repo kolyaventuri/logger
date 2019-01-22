@@ -36,11 +36,11 @@ export default class Logger {
     }
   }
 
-  logInfo(info: any) {
+  logInfo = (info: any) => {
     this.log(info);
   }
 
-  logError(error: any) {
+  logError = (error: any) => {
     this.log(error, {type: types.ERROR});
   }
 }
