@@ -12,22 +12,26 @@ type ArgType = {
   database?: DatabaseType
 };
 
+const noop = () => {};
+
 export default class Logger {
   scope: string | null;
 
-  database: DatabaseType | null;
+  database: DatabaseType;
 
   constructor({scope, database}: ArgType = {}) {
     this.scope = scope || null;
-    this.database = database || null;
+    this.database = database || {save: noop};
   }
 
   log = (data: any, args: {[string]: any} = {}) => {
-    const {scope} = this;
-    let {type} = args;
+    const {scope, database} = this;
+    let {type, ...extraArgs} = args;
     type = type || types.INFO;
 
-    log(data, {type, scope});
+    const logResult = log(data, {type, scope, ...extraArgs});
+
+    database.save(logResult);
   }
 
   logInfo(info: any) {

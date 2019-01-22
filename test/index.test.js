@@ -1,18 +1,22 @@
 import test from 'ava';
-import {spy} from 'sinon';
+import sinon, {spy} from 'sinon';
 import Logger from '../src';
 import * as methods from '../src/logger';
 import * as types from '../src/types';
 
 let logSpy;
+let clock;
 test.before(() => {
   logSpy = spy(methods, 'log');
+  clock = sinon.useFakeTimers();
 });
 
 test.after.always(() => {
   if (logSpy) {
     logSpy.restore();
   }
+
+  clock.restore();
 });
 
 test('can create a logger with generic scope', t => {
@@ -84,4 +88,26 @@ test('can accept a database transport as an argument', t => {
   const logger = new Logger({database});
 
   t.is(logger.database, database);
+});
+
+test('calls the database transport save method when a log is executed', t => {
+  const save = spy();
+  const database = {
+    save
+  };
+
+  const logger = new Logger({database});
+
+  const data = {a: 1, b: 2};
+  const timestamp = new Date();
+
+  logger.logInfo(data);
+  const expected = {
+    scope: null,
+    type: types.INFO,
+    data,
+    timestamp
+  };
+
+  t.deepEqual(save.lastCall.args[0], expected);
 });
