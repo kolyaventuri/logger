@@ -15,20 +15,20 @@ test.after.always(() => {
   }
 });
 
-test('Can create a logger with generic scope', t => {
+test('can create a logger with generic scope', t => {
   const logger = new Logger();
 
   t.is(logger.scope, null);
 });
 
-test('Can create a logger with a specified scope', t => {
+test('can create a logger with a specified scope', t => {
   const scope = 'scope';
-  const logger = new Logger(scope);
+  const logger = new Logger({scope});
 
   t.is(logger.scope, scope);
 });
 
-test('Logs without scope', t => {
+test('logs without scope', t => {
   const logger = new Logger();
   const msg = 'some info';
 
@@ -37,9 +37,9 @@ test('Logs without scope', t => {
   t.true(logSpy.calledWith(msg, {type: types.INFO, scope: null}));
 });
 
-test('Logs with scope', t => {
+test('logs with scope', t => {
   const scope = 'scope';
-  const logger = new Logger(scope);
+  const logger = new Logger({scope});
   const msg = 'some info';
 
   logger.logInfo(msg);
@@ -47,7 +47,7 @@ test('Logs with scope', t => {
   t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
 });
 
-test('Errors without scope', t => {
+test('errors without scope', t => {
   const logger = new Logger();
   const msg = 'some info';
 
@@ -56,9 +56,9 @@ test('Errors without scope', t => {
   t.true(logSpy.calledWith(msg, {type: types.ERROR, scope: null}));
 });
 
-test('Errors with scope', t => {
+test('errors with scope', t => {
   const scope = 'scope';
-  const logger = new Logger(scope);
+  const logger = new Logger({scope});
   const msg = 'some info';
 
   logger.logError(msg);
@@ -68,10 +68,20 @@ test('Errors with scope', t => {
 
 test('can log object with scope', t => {
   const scope = 'scope';
-  const logger = new Logger(scope);
+  const logger = new Logger({scope});
   const msg = {a: 1, b: 2};
 
   logger.logInfo(msg);
 
   t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
+});
+
+test('can accept a database transport as an argument', t => {
+  const database = {
+    save: spy()
+  };
+
+  const logger = new Logger({database});
+
+  t.is(logger.database, database);
 });

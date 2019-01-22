@@ -3,11 +3,23 @@
 import {log} from './logger';
 import * as types from './types';
 
+type DatabaseType = {
+  save: Function
+};
+
+type ArgType = {
+  scope?: string,
+  database?: DatabaseType
+};
+
 export default class Logger {
   scope: string | null;
 
-  constructor(scope?: string) {
+  database: DatabaseType | null;
+
+  constructor({scope, database}: ArgType = {}) {
     this.scope = scope || null;
+    this.database = database || null;
   }
 
   log = (data: any, args: {[string]: any} = {}) => {
