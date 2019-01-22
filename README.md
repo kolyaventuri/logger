@@ -4,7 +4,7 @@
 Drop-in, zero-dependency scoped logger. Allows for better event tracking, by providing distinguishable log outputs per module / section of a project.
 
 ## Installation
-No NPM package exists yet, so install with `npm i git@github.com:kolyaventuri/logger.git --production` (see the notes section about the `--production` flag)
+No NPM package exists yet, so install with `npm i https://github.com/kolyaventuri/logger.git`
 
 ## Usage
 Usage is simple! Just drop in, instantiate, and use!
@@ -72,4 +72,4 @@ Files are typed with [Flow](https://flow.org).
 Feel free to pick up any issues you see! Just fork, make the changes, and open a pull request.
 
 ## Notes
-Even though I am calling this a "zero-dependency" logger, there are development dependencies. Just use the `--production` flag when installing to skip installing dev dependencies.
+Even though I am calling this a "zero-dependency" logger, there are development dependencies. The module itself requires no dependencies.
