@@ -1,19 +1,21 @@
+// @flow
+
 import {allowedTypes} from './constants';
 
-export const log = (data, args = {}) => {
-  const {type} = args;
+type ArgType = {[string]: any};
+
+export const log = (data: any, args: ArgType = {}) => {
+  const {type, scope} = args;
+
   let method = console.log;
   if (allowedTypes.includes(type)) {
     method = console[type];
   }
 
-  method(data);
-};
+  if (scope) {
+    const scopeString = `[${scope}]`;
+    return method(scopeString, data);
+  }
 
-export const logInfo = info => {
-  log(info);
-};
-
-export const logError = error => {
-  log(error, {type: 'error'});
+  return method(data);
 };
