@@ -1,11 +1,12 @@
 // @flow
 
 import {allowedTypes} from './constants';
+import * as types from './types';
 
 type ArgType = {[string]: any};
 
 export const log = (data: any, args: ArgType = {}) => {
-  const {type, scope} = args;
+  const {type, scope, ...extraArgs} = args;
 
   let method = console.log;
   if (allowedTypes.includes(type)) {
@@ -14,8 +15,16 @@ export const log = (data: any, args: ArgType = {}) => {
 
   if (scope) {
     const scopeString = `[${scope}]`;
-    return method(scopeString, data);
+    method(scopeString, data);
+  } else {
+    method(data);
   }
 
-  return method(data);
+  return {
+    data,
+    type: type || types.INFO,
+    scope,
+    timestamp: new Date(),
+    ...extraArgs
+  };
 };
