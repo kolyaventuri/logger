@@ -111,3 +111,12 @@ test('calls the database transport save method when a log is executed', t => {
 
   t.deepEqual(save.lastCall.args[0], expected);
 });
+
+test('does not error if no database transport is provided', t => {
+  const logger = new Logger();
+  const data = 1;
+
+  const fn = () => logger.logInfo(data);
+
+  t.notThrows(fn);
+});

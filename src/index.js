@@ -4,7 +4,7 @@ import {log} from './logger';
 import * as types from './types';
 
 type DatabaseType = {
-  save: Function
+  save: (data: any) => void
 };
 
 type ArgType = {
@@ -31,7 +31,9 @@ export default class Logger {
 
     const logResult = log(data, {type, scope, ...extraArgs});
 
-    database.save(logResult);
+    if (typeof database.save === 'function') {
+      database.save(logResult);
+    }
   }
 
   logInfo(info: any) {
