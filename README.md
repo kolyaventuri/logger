@@ -71,5 +71,8 @@ Files are typed with [Flow](https://flow.org).
 ## Contributing
 Feel free to pick up any issues you see! Just fork, make the changes, and open a pull request.
 
+## Why "Scriba?"
+_Scribae_ (literally: scribes) were public notaries in ancient Rome, tasked with recording official information on public tablets [Wikipedia](https://en.wikipedia.org/wiki/Scriba_(ancient_Rome)). The name seemed fitting, given that this package just writes down what you tell it.
+
 ## Notes
 Even though I am calling this a "zero-dependency" logger, there are development dependencies. The module itself requires no dependencies.
