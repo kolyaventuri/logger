@@ -1,6 +1,6 @@
 {
   "name": "scriba",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generic, zero-dependency event logger",
   "main": "lib/index.js",
   "scripts": {
