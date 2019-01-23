@@ -1,16 +1,16 @@
-# Logger
+# Scriba 
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
 
 Drop-in, zero-dependency scoped logger. Allows for better event tracking, by providing distinguishable log outputs per module / section of a project.
 
 ## Installation
-No NPM package exists yet, so install with `npm i https://github.com/kolyaventuri/logger.git`
+No NPM package exists yet, so install with `npm i scriba`
 
 ## Usage
 Usage is simple! Just drop in, instantiate, and use!
 
 ```js
-import Logger from 'logger';
+import Logger from 'scriba';
 
 const {logInfo, logError} = new Logger();
 
