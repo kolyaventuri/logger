@@ -1,3 +1,7 @@
 // @noflow
+import * as types from './types';
 
-export const allowedTypes = ['info', 'error'];
+export const typeMap = {
+  [types.INFO]: 'log',
+  [types.ERROR]: 'error'
+};

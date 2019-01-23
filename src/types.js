@@ -1,4 +1,4 @@
 // @noflow
 
-export const INFO = 'log';
-export const ERROR = 'error';
+export const INFO = 'INFO';
+export const ERROR = 'ERROR';

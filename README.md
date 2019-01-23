@@ -14,10 +14,10 @@ import Logger from 'logger';
 
 const {logInfo, logError} = new Logger();
 
-logInfo('Hello, world!'); // Hello, world!
-logError('Something is wrong.') // Something is wrong. (As an error)
+logInfo('Hello, world!'); // [INFO] Hello, world!
+logError('Something is wrong.') // [ERROR] Something is wrong. (As an error)
 
-logInfo({hello: 'World'}); // {hello: 'World'}
+logInfo({hello: 'World'}); // [INFO] {hello: 'World'}
 ```
 
 Scoping is as easy as providing a name upon instantiation
@@ -25,7 +25,7 @@ Scoping is as easy as providing a name upon instantiation
 ```js
 const {logInfo} = new Logger({scope: 'MY_SCOPE'});
 
-logInfo('Hello, world!'); // [MY_SCOPE] Hello, world!
+logInfo('Hello, world!'); // [MY_SCOPE] [INFO] Hello, world!
 ```
 
 
