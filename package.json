@@ -4,7 +4,7 @@
   "description": "Generic event logger",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "parcel build src/index.js -d lib",
     "test": "flow && xo && ava",
     "lint": "flow && xo"
   },
@@ -28,6 +28,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint-plugin-flowtype": "^3.2.1",
     "flow-bin": "^0.91.0",
+    "parcel-bundler": "^1.11.0",
     "pre-commit": "^1.2.2",
     "sinon": "^7.2.3",
     "xo": "^0.24.0"
