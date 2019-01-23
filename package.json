@@ -1,7 +1,7 @@
 {
-  "name": "logger",
+  "name": "scriba",
   "version": "1.0.0",
-  "description": "Generic event logger",
+  "description": "Generic, zero-dependency event logger",
   "main": "lib/index.js",
   "scripts": {
     "build": "parcel build src/index.js -d lib",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kolyaventuri/logger.git"
+    "url": "git+https://github.com/kolyaventuri/scriba.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kolyaventuri/logger/issues"
+    "url": "https://github.com/kolyaventuri/scriba/issues"
   },
-  "homepage": "https://github.com/kolyaventuri/logger#readme",
+  "homepage": "https://github.com/kolyaventuri/scriba#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
