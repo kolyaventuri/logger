@@ -5,9 +5,10 @@ import {
   log
 } from '../src/logger';
 import * as types from '../src/types';
+import {colors, colorize} from '../src/colors';
 
-const infoTag = `[${types.INFO}]`;
-const errorTag = `[${types.ERROR}]`;
+const infoTag = colorize(colors.CYAN, `[${types.INFO}]`);
+const errorTag = colorize(colors.RED, `[${types.ERROR}]`);
 
 let logStub;
 let errorStub;
@@ -112,4 +113,12 @@ test('can return arbitrary arguments', t => {
   };
 
   t.deepEqual(result, expected);
+});
+
+test('can disable color', t => {
+  const msg = 'test';
+
+  log(msg, {color: false});
+
+  t.true(logStub.calledWith(`[${types.INFO}]`, msg));
 });
