@@ -1,6 +1,6 @@
 // @flow
 
-import {allowedTypes} from './constants';
+import {typeMap} from './constants';
 import * as types from './types';
 
 type ArgType = {[string]: any};
@@ -8,10 +8,8 @@ type ArgType = {[string]: any};
 export const log = (data: any, args: ArgType = {}) => {
   const {type, scope, ...extraArgs} = args;
 
-  let method = console.log;
-  if (allowedTypes.includes(type)) {
-    method = console[type];
-  }
+  const methodName = typeMap[type] || 'log';
+  const method = console[methodName];
 
   if (scope) {
     const scopeString = `[${scope}]`;
