@@ -4,7 +4,7 @@
 Drop-in, zero-dependency scoped logger. Allows for better event tracking, by providing distinguishable log outputs per module / section of a project.
 
 ## Installation
-No NPM package exists yet, so install with `npm i scriba`
+Simply install with `npm i scriba`
 
 ## Usage
 Usage is simple! Just drop in, instantiate, and use!
