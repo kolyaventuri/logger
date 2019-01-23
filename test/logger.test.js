@@ -6,6 +6,9 @@ import {
 } from '../src/logger';
 import * as types from '../src/types';
 
+const infoTag = `[${types.INFO}]`;
+const errorTag = `[${types.ERROR}]`;
+
 let logStub;
 let errorStub;
 let clock;
@@ -25,14 +28,14 @@ test('logs to console by default', t => {
   const msg = 'some info log test';
   log(msg);
 
-  t.true(logStub.calledWith(msg));
+  t.true(logStub.calledWith(infoTag, msg));
 });
 
 test('can be told to log error', t => {
   const msg = 'some info error log test';
   log(msg, {type: types.ERROR});
 
-  t.true(errorStub.calledWith(msg));
+  t.true(errorStub.calledWith(errorTag, msg));
 });
 
 test('can be provided a scope', t => {
@@ -41,14 +44,14 @@ test('can be provided a scope', t => {
 
   log(msg, {scope});
 
-  t.true(logStub.calledWith(`[${scope}]`, msg));
+  t.true(logStub.calledWith(`[${scope}]`, infoTag, msg));
 });
 
 test('doesn\'t stringify input data', t => {
   const data = {a: 1, b: 2};
   log(data);
 
-  t.true(logStub.calledWith(data));
+  t.true(logStub.calledWith(infoTag, data));
 });
 
 test('doesn\'t stringify input data when scoped', t => {
@@ -57,7 +60,7 @@ test('doesn\'t stringify input data when scoped', t => {
 
   log(data, {scope});
 
-  t.true(logStub.calledWith(`[${scope}]`, data));
+  t.true(logStub.calledWith(`[${scope}]`, infoTag, data));
 });
 
 test('returns a formatted data object containing logged information', t => {
