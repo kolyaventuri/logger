@@ -7,6 +7,8 @@ import {
 import * as types from '../src/types';
 import {colors, colorize} from '../src/colors';
 
+const scope = 'scope';
+const scopeTag = colorize(colors.GREEN, `[${scope}]`);
 const infoTag = colorize(colors.CYAN, `[${types.INFO}]`);
 const errorTag = colorize(colors.RED, `[${types.ERROR}]`);
 
@@ -41,11 +43,10 @@ test('can be told to log error', t => {
 
 test('can be provided a scope', t => {
   const msg = 'some info';
-  const scope = 'scope';
 
   log(msg, {scope});
 
-  t.true(logStub.calledWith(`[${scope}]`, infoTag, msg));
+  t.true(logStub.calledWith(scopeTag, infoTag, msg));
 });
 
 test('doesn\'t stringify input data', t => {
@@ -57,11 +58,10 @@ test('doesn\'t stringify input data', t => {
 
 test('doesn\'t stringify input data when scoped', t => {
   const data = {a: 1, b: 2};
-  const scope = 'scope';
 
   log(data, {scope});
 
-  t.true(logStub.calledWith(`[${scope}]`, infoTag, data));
+  t.true(logStub.calledWith(scopeTag, infoTag, data));
 });
 
 test('returns a formatted data object containing logged information', t => {
@@ -117,8 +117,9 @@ test('can return arbitrary arguments', t => {
 
 test('can disable color', t => {
   const msg = 'test';
+  const scope = 'scope';
 
-  log(msg, {color: false});
+  log(msg, {color: false, scope});
 
-  t.true(logStub.calledWith(`[${types.INFO}]`, msg));
+  t.true(logStub.calledWith(`[${scope}]`, `[${types.INFO}]`, msg));
 });

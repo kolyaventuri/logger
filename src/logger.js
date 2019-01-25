@@ -14,11 +14,12 @@ export const log = (data: any, args: ArgType = {}) => {
   const methodName = typeMap[type] || 'log';
   const method = console[methodName];
 
-  const typeTagDefault = `[${type}]`;
-  const typeTag = color ? colorize(colors[type], typeTagDefault) : typeTagDefault;
+  const typeTagRaw = `[${type}]`;
+  const typeTag = color ? colorize(colors[type], typeTagRaw) : typeTagRaw;
 
   if (scope) {
-    const scopeTag = `[${scope}]`;
+    const scopeTagRaw = `[${scope}]`;
+    const scopeTag = color ? colorize(colors[types.SCOPE], scopeTagRaw) : scopeTagRaw;
     method(scopeTag, typeTag, data);
   } else {
     method(typeTag, data);
