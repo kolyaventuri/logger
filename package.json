@@ -1,6 +1,6 @@
 {
   "name": "scriba",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Generic, zero-dependency event logger",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/kolyaventuri/scriba.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kolyaventuri/scriba/issues"
   },
@@ -22,6 +22,7 @@
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
     "ava": "^1.1.0",
     "babel-eslint": "^10.0.1",
@@ -53,8 +54,5 @@
     "ignore": [
       "lib/**/*"
     ]
-  },
-  "dependencies": {
-    "@babel/preset-flow": "^7.0.0"
   }
 }
