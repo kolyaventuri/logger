@@ -28,6 +28,11 @@ const {logInfo} = new Logger({scope: 'MY_SCOPE'});
 logInfo('Hello, world!'); // [MY_SCOPE] [INFO] Hello, world!
 ```
 
+By default, output is colorized (green scope, and various colors for types). This can be disabled by passing a `color` argument into the `Logger` constructor.
+
+```js
+const {logInfo} = new Logger({color: false});
+```
 
 ## Database logging
 Logger allows you to connect a custom database transport layer for easy saving of your logs. This database transport is in the following form
@@ -64,8 +69,11 @@ type Data = {
 
 ## Running tests
 Test can be run as easily as `npm test`
+
 The rest runner of choice is [Ava](https://github.com/avajs/ava).
+
 Code style is enforced with [XO](https://github.com/xojs/xo).
+
 Files are typed with [Flow](https://flow.org).
 
 ## Contributing
