@@ -38,7 +38,7 @@ test('logs without scope', t => {
 
   logger.logInfo(msg);
 
-  t.true(logSpy.calledWith(msg, {type: types.INFO, scope: null}));
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope: null, color: true}));
 });
 
 test('logs with scope', t => {
@@ -48,7 +48,7 @@ test('logs with scope', t => {
 
   logger.logInfo(msg);
 
-  t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope, color: true}));
 });
 
 test('errors without scope', t => {
@@ -57,7 +57,7 @@ test('errors without scope', t => {
 
   logger.logError(msg);
 
-  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope: null}));
+  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope: null, color: true}));
 });
 
 test('errors with scope', t => {
@@ -67,7 +67,7 @@ test('errors with scope', t => {
 
   logger.logError(msg);
 
-  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope}));
+  t.true(logSpy.calledWith(msg, {type: types.ERROR, scope, color: true}));
 });
 
 test('can log object with scope', t => {
@@ -77,7 +77,7 @@ test('can log object with scope', t => {
 
   logger.logInfo(msg);
 
-  t.true(logSpy.calledWith(msg, {type: types.INFO, scope}));
+  t.true(logSpy.calledWith(msg, {type: types.INFO, scope, color: true}));
 });
 
 test('can accept a database transport as an argument', t => {
@@ -119,4 +119,13 @@ test('does not error if no database transport is provided', t => {
   const fn = () => logger.logInfo(data);
 
   t.notThrows(fn);
+});
+
+test('can disable color', t => {
+  const logger = new Logger({color: false});
+  const data = 'msg';
+
+  logger.logInfo(data);
+
+  t.true(logSpy.calledWith(data, {type: types.INFO, scope: null, color: false}));
 });
